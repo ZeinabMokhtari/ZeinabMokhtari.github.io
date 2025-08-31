@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio | Your Name</title>
+  <meta name="description" content="My portfolio showcasing research, projects, and publications.">
+  <meta property="og:title" content="Portfolio | Your Name">
+  <meta property="og:description" content="Projects, publications, and contact info.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="#home" class="brand">Your Name</a>
+      <button class="menu-btn" aria-label="open menu" onclick="document.body.classList.toggle('open')">☰</button>
+      <ul class="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="home" class="hero">
+    <h1>Hello! I’m <span class="accent">Your Name</span></h1>
+    <p class="tagline">Researcher | Learning Analytics | Educational Games</p>
+    <div class="cta">
+      <a href="#projects" class="btn">View Projects</a>
+      <a href="cv.pdf" class="btn ghost" target="_blank" rel="noopener">Download CV (PDF)</a>
+    </div>
+  </main>
+
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>
+      Write a short paragraph about your expertise and interests here. Example: "I work at the intersection of digital learning, learning analytics, and SEL, with a passion for designing personalized learning experiences."
+    </p>
+    <ul class="badges">
+      <li>R / SPSS / Python</li>
+      <li>Adaptive Learning</li>
+      <li>Game-Based Learning</li>
+      <li>Program Evaluation</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="section">
+    <h2>Projects</h2>
+    <div class="grid">
+      <article class="card">
+        <img src="assets/placeholder.png" alt="Project image 1">
+        <div class="card-body">
+          <h3>Project 1: Learning Analytics Dashboard</h3>
+          <p>Designed a dashboard to track student progress and recommend personalized exercises.</p>
+          <a class="btn small" href="#" target="_blank" rel="noopener">View</a>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/placeholder.png" alt="Project image 2">
+        <div class="card-body">
+          <h3>Project 2: Interactive Math Game</h3>
+          <p>A game with dynamic difficulty and smart hint system for better engagement.</p>
+          <a class="btn small" href="#" target="_blank" rel="noopener">View</a>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/placeholder.png" alt="Project image 3">
+        <div class="card-body">
+          <h3>Project 3: Academic Motivation Study</h3>
+          <p>Analyzed longitudinal data to explore the role of SEL and teacher-student relationships.</p>
+          <a class="btn small" href="#" target="_blank" rel="noopener">View</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="publications" class="section">
+    <h2>Selected Publications</h2>
+    <ol class="pubs">
+      <li>Lastname, Y. (Year). Title of the article. <em>Journal Name</em>, Volume(Issue), pages. https://doi.org/...</li>
+      <li>Lastname, Y. (Year). Paper title. <em>Conference Name</em>.</li>
+      <li>Lastname, Y. (Year). Book/Chapter title. Publisher.</li>
+    </ol>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <ul class="links">
+      <li><a href="mailto:you@example.com">you@example.com</a></li>
+      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a></li>
+      <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <small>© <span id="year"></span> Your Name — built with HTML/CSS</small>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
