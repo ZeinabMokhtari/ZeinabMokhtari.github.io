@@ -18,7 +18,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 25px;
+      gap: 30px;
     }
     .circle {
       width: 120px;
@@ -31,13 +31,16 @@
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
-      transition: transform 0.3s;
+      box-shadow: 4px 4px 10px rgba(0,0,0,0.15), -4px -4px 10px rgba(255,255,255,0.6);
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
     }
     .circle:hover {
-      transform: scale(1.1);
+      transform: scale(1.12);
+      box-shadow: 6px 6px 14px rgba(0,0,0,0.2), -6px -6px 14px rgba(255,255,255,0.7);
+      filter: brightness(1.08);
     }
 
-    /* رنگ‌های پاستیلی */
+    /* ۳۰ رنگ پاستیلی */
     .c1 { background: #ffd6a5; }
     .c2 { background: #fdffb6; }
     .c3 { background: #caffbf; }
@@ -45,7 +48,34 @@
     .c5 { background: #a0c4ff; }
     .c6 { background: #bdb2ff; }
     .c7 { background: #ffc6ff; }
-    .c8 { background: #fffffc; border: 1px solid #ddd; }
+    .c8 { background: #ffadad; }
+    .c9 { background: #ffdab9; }
+    .c10 { background: #e2f0cb; }
+    .c11 { background: #b5ead7; }
+    .c12 { background: #c7ceea; }
+    .c13 { background: #fbc4ab; }
+    .c14 { background: #fde2e4; }
+    .c15 { background: #fad2e1; }
+    .c16 { background: #e4c1f9; }
+    .c17 { background: #d0f4de; }
+    .c18 { background: #fff1e6; }
+    .c19 { background: #ffdeeb; }
+    .c20 { background: #e2ece9; }
+    .c21 { background: #dfe7fd; }
+    .c22 { background: #f1f7b5; }
+    .c23 { background: #ffb5a7; }
+    .c24 { background: #fcd5ce; }
+    .c25 { background: #d8e2dc; }
+    .c26 { background: #ece4db; }
+    .c27 { background: #fde4cf; }
+    .c28 { background: #cddafd; }
+    .c29 { background: #e9edc9; }
+    .c30 { background: #fec5bb; }
+
+    /* چیدمان نامنظم */
+    .circle:nth-child(3n) { transform: rotate(-6deg) translateY(8px); }
+    .circle:nth-child(4n) { transform: rotate(5deg) translateY(-12px); }
+    .circle:nth-child(5n) { transform: rotate(-8deg) translateX(8px); }
 
     /* مودال */
     .modal {
@@ -54,25 +84,41 @@
       z-index: 1000;
       left: 0; top: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.6);
       justify-content: center;
       align-items: center;
+      animation: fadeIn 0.3s;
     }
     .modal-content {
-      background: white;
-      padding: 30px;
+      background: linear-gradient(135deg, #ffffff, #f0f4ff);
+      padding: 35px;
       max-width: 600px;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       text-align: left;
       position: relative;
+      animation: popIn 0.4s ease;
     }
     .close {
       position: absolute;
-      top: 10px; right: 15px;
-      font-size: 20px;
+      top: 12px; right: 18px;
+      font-size: 26px;
       cursor: pointer;
-      color: #666;
+      color: #555;
+      transition: color 0.3s;
+    }
+    .close:hover {
+      color: #e63946;
+    }
+
+    /* انیمیشن‌ها */
+    @keyframes fadeIn {
+      from { background: rgba(0,0,0,0); }
+      to { background: rgba(0,0,0,0.6); }
+    }
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -81,35 +127,34 @@
   <div class="container">
     <div class="circle c1" onclick="openModal(1)">Cooperative Learning</div>
     <div class="circle c2" onclick="openModal(2)">Project-Based Learning</div>
-    <!-- 28 دایره خالی -->
     <div class="circle c3" onclick="openModal(3)">Method 3</div>
     <div class="circle c4" onclick="openModal(4)">Method 4</div>
     <div class="circle c5" onclick="openModal(5)">Method 5</div>
     <div class="circle c6" onclick="openModal(6)">Method 6</div>
     <div class="circle c7" onclick="openModal(7)">Method 7</div>
     <div class="circle c8" onclick="openModal(8)">Method 8</div>
-    <div class="circle c1" onclick="openModal(9)">Method 9</div>
-    <div class="circle c2" onclick="openModal(10)">Method 10</div>
-    <div class="circle c3" onclick="openModal(11)">Method 11</div>
-    <div class="circle c4" onclick="openModal(12)">Method 12</div>
-    <div class="circle c5" onclick="openModal(13)">Method 13</div>
-    <div class="circle c6" onclick="openModal(14)">Method 14</div>
-    <div class="circle c7" onclick="openModal(15)">Method 15</div>
-    <div class="circle c8" onclick="openModal(16)">Method 16</div>
-    <div class="circle c1" onclick="openModal(17)">Method 17</div>
-    <div class="circle c2" onclick="openModal(18)">Method 18</div>
-    <div class="circle c3" onclick="openModal(19)">Method 19</div>
-    <div class="circle c4" onclick="openModal(20)">Method 20</div>
-    <div class="circle c5" onclick="openModal(21)">Method 21</div>
-    <div class="circle c6" onclick="openModal(22)">Method 22</div>
-    <div class="circle c7" onclick="openModal(23)">Method 23</div>
-    <div class="circle c8" onclick="openModal(24)">Method 24</div>
-    <div class="circle c1" onclick="openModal(25)">Method 25</div>
-    <div class="circle c2" onclick="openModal(26)">Method 26</div>
-    <div class="circle c3" onclick="openModal(27)">Method 27</div>
-    <div class="circle c4" onclick="openModal(28)">Method 28</div>
-    <div class="circle c5" onclick="openModal(29)">Method 29</div>
-    <div class="circle c6" onclick="openModal(30)">Method 30</div>
+    <div class="circle c9" onclick="openModal(9)">Method 9</div>
+    <div class="circle c10" onclick="openModal(10)">Method 10</div>
+    <div class="circle c11" onclick="openModal(11)">Method 11</div>
+    <div class="circle c12" onclick="openModal(12)">Method 12</div>
+    <div class="circle c13" onclick="openModal(13)">Method 13</div>
+    <div class="circle c14" onclick="openModal(14)">Method 14</div>
+    <div class="circle c15" onclick="openModal(15)">Method 15</div>
+    <div class="circle c16" onclick="openModal(16)">Method 16</div>
+    <div class="circle c17" onclick="openModal(17)">Method 17</div>
+    <div class="circle c18" onclick="openModal(18)">Method 18</div>
+    <div class="circle c19" onclick="openModal(19)">Method 19</div>
+    <div class="circle c20" onclick="openModal(20)">Method 20</div>
+    <div class="circle c21" onclick="openModal(21)">Method 21</div>
+    <div class="circle c22" onclick="openModal(22)">Method 22</div>
+    <div class="circle c23" onclick="openModal(23)">Method 23</div>
+    <div class="circle c24" onclick="openModal(24)">Method 24</div>
+    <div class="circle c25" onclick="openModal(25)">Method 25</div>
+    <div class="circle c26" onclick="openModal(26)">Method 26</div>
+    <div class="circle c27" onclick="openModal(27)">Method 27</div>
+    <div class="circle c28" onclick="openModal(28)">Method 28</div>
+    <div class="circle c29" onclick="openModal(29)">Method 29</div>
+    <div class="circle c30" onclick="openModal(30)">Method 30</div>
   </div>
 
   <!-- مودال -->
@@ -127,15 +172,9 @@
     const modalText = document.getElementById("modalText");
 
     const contents = {
-      1: {
-        title: "Cooperative Learning",
-        text: "Students work in small groups to help each other learn.\nSteps: Form groups → Assign roles → Solve tasks together."
-      },
-      2: {
-        title: "Project-Based Learning",
-        text: "Students learn by working on a project over time.\nSteps: Define question → Research → Create project → Present results."
-      },
-      // بقیه خالی بمونن که خودت پر کنی
+      1: { title: "Cooperative Learning", text: "Students work in small groups to help each other learn.\nSteps: Form groups → Assign roles → Solve tasks together." },
+      2: { title: "Project-Based Learning", text: "Students learn by working on a project over time.\nSteps: Define question → Research → Create project → Present results." },
+      // بقیه توضیحات خالی بماند
       3: {title: "Method 3", text: ""},
       4: {title: "Method 4", text: ""},
       5: {title: "Method 5", text: ""},
