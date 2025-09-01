@@ -28,7 +28,6 @@
   padding: 10px 16px;
   position: sticky; /* اگه می‌خوای بالا بچسبه */
   top: 0;
-  background: var(--bg, #fff);
   z-index: 10;
 }
 
@@ -73,6 +72,89 @@ body:not(.light) #theme-toggle {
   .menu { gap: 12px; }
   #theme-toggle { margin-left: 8px; }
 }
+    </style>
+
+<!-- اینجا کد جدیدی که من دادم رو بذار -->
+<style>
+  /* کدهای رنگ و منو که برات نوشتم */
+  :root {
+    --bg: #0f1115;
+    --nav-bg: rgba(22, 24, 29, 0.85);
+    --card: #1a1d24;
+    --text: #f5f7fb;
+    --muted: #b5bdc9;
+    --accent: #2563eb;
+    --shadow: rgba(0,0,0,0.35);
+  }
+
+  body.light {
+    --bg: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --card: #f4f6fb;
+    --text: #111214;
+    --muted: #4b5563;
+    --accent: #2563eb;
+    --shadow: rgba(0,0,0,0.12);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .nav {
+    background: var(--nav-bg);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px var(--shadow);
+  }
+
+  .nav a, .menu a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav a:hover, .menu a:hover {
+    color: var(--accent);
+  }
+
+  .menu-btn, #theme-toggle {
+    color: var(--text);
+    border-color: rgba(255,255,255,0.25);
+  }
+  body.light .menu-btn, body.light #theme-toggle {
+    border-color: rgba(0,0,0,0.15);
+  }
+
+  @media (max-width: 768px) {
+    .menu {
+      display: none;
+    }
+    body.open .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      color: var(--text);
+      padding: 16px;
+      z-index: 50;
+      box-shadow: 0 8px 24px var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    .menu li a {
+      display: block;
+      padding: 12px 8px;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+    .menu li a:active {
+      background: rgba(127,127,127,0.12);
+    }
+  }
   </style>
 </head>
 
