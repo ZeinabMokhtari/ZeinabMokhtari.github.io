@@ -145,6 +145,28 @@
       .circle{ width:104px; height:104px; font-size:12px; padding:10px }
       .card-body{ padding:14px }
     }
+    .btn-primary{
+  background: color-mix(in srgb, var(--accent) 55%, #fff);
+  border: 1px solid color-mix(in srgb, var(--accent) 65%, #cbd5e1);
+  color:#0b1220; padding:8px 14px; border-radius:10px; cursor:pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,.06);
+}
+.btn-primary:hover{ filter:brightness(1.05) }
+.btn-secondary{
+  background:#fff; border:1px solid #d1d5db; color:#374151; padding:8px 14px;
+  border-radius:10px; cursor:pointer; margin-left:8px;
+}
+.grid-2{
+  display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px;
+}
+.grid-2 .full{ grid-column: 1 / -1; }
+#tailorForm label{ display:flex; flex-direction:column; gap:6px; font-size:13px; color:#111827 }
+#tailorForm input, #tailorForm textarea, #tailorForm select{
+  width:100%; padding:10px 12px; border:1px solid #e5e7eb; border-radius:10px; background:#fff;
+}
+.actions{ margin-top:10px; display:flex; align-items:center; gap:8px }
+.status{ font-size:13px; color:#64748b }
+@media (max-width:680px){ .grid-2{ grid-template-columns: 1fr } }
   </style>
 </head>
 <body>
@@ -193,6 +215,60 @@
         <span class="chip">Teaching Method</span>
       </div>
       <div class="card-body">
+        <section class="kb-section" id="tailorSection">
+  <h3 class="kb-head"><span class="emoji">🤖</span> Tailor with AI</h3>
+
+  <button class="btn-primary" type="button" onclick="toggleTailorForm()">Open form</button>
+
+  <form id="tailorForm" onsubmit="generatePlan(event)" hidden style="margin-top:10px">
+    <div class="grid-2">
+      <label>
+        <span>Grade / Age *</span>
+        <input id="tGradeAge" type="text" placeholder="e.g., Grade 4 (ages 9–10)" required>
+      </label>
+      <label>
+        <span>Subject / Topic *</span>
+        <input id="tSubjectTopic" type="text" placeholder="e.g., Math — Fractions" required>
+      </label>
+      <label class="full">
+        <span>Learning Objectives (2–3) *</span>
+        <textarea id="tObjectives" rows="3" placeholder="One per line" required></textarea>
+      </label>
+      <label class="full">
+        <span>Prior Knowledge / Challenges</span>
+        <textarea id="tPrior" rows="2" placeholder="What students already know; common difficulties"></textarea>
+      </label>
+      <label class="full">
+        <span>Class Size & Diversity (ELL/IEP, etc.)</span>
+        <input id="tClassProfile" type="text" placeholder="e.g., 28 students; 6 ELL; 2 IEP">
+      </label>
+      <label>
+        <span>Tech Access</span>
+        <select id="tTech">
+          <option>Low</option><option selected>Medium</option><option>High</option>
+        </select>
+      </label>
+      <label>
+        <span>Time</span>
+        <select id="tTime">
+          <option>15 minutes</option><option>30 minutes</option><option selected>45 minutes</option><option>60 minutes</option><option>90 minutes</option>
+        </select>
+      </label>
+      <label>
+        <span>Tone</span>
+        <select id="tTone">
+          <option selected>Friendly</option><option>Formal</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button id="btnGenerate" class="btn-primary" type="submit">Generate</button>
+      <button class="btn-secondary" type="button" onclick="toggleTailorForm(false)">Cancel</button>
+      <span id="tailorStatus" class="status" aria-live="polite" hidden>Working…</span>
+    </div>
+  </form>
+</section>
         <section class="kb-section">
           <h3 class="kb-head"><span class="emoji">✨</span> Description</h3>
           <p class="desc" id="mDesc"></p>
@@ -639,5 +715,96 @@
     // بستن با ESC
     window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
   </script>
+  <script>
+  /* 1) آدرس تابع Serverless خودت را اینجا بگذار */
+  const ENDPOINT = 'https://YOUR_VERCEL_PROJECT.vercel.app/api/generate'; // ← این را عوض کن
+
+  /* 2) باز/بستن فرم */
+  function toggleTailorForm(force){
+    const form = document.getElementById('tailorForm');
+    const status = document.getElementById('tailorStatus');
+    if(typeof force === 'boolean'){ form.hidden = !force; }
+    else { form.hidden = !form.hidden; }
+    status.hidden = true;
+  }
+
+  /* 3) ارسال فرم و پر کردن کارت */
+  async function generatePlan(e){
+    e.preventDefault();
+    const btn = document.getElementById('btnGenerate');
+    const status = document.getElementById('tailorStatus');
+    status.hidden = false; status.textContent = 'Working…';
+    btn.disabled = true;
+
+    // جمع‌آوری ورودی‌ها
+    const payload = {
+      gradeAge:       document.getElementById('tGradeAge').value.trim(),
+      subjectTopic:   document.getElementById('tSubjectTopic').value.trim(),
+      objectives:     document.getElementById('tObjectives').value.split('\n').map(s=>s.trim()).filter(Boolean),
+      priorKnowledge: document.getElementById('tPrior').value.trim(),
+      classProfile:   document.getElementById('tClassProfile').value.trim(),
+      techAccess:     document.getElementById('tTech').value,
+      timeAvailable:  document.getElementById('tTime').value,
+      tone:           document.getElementById('tTone').value
+    };
+
+    // اعتبارسنجی خیلی ساده
+    if(!payload.gradeAge || !payload.subjectTopic || payload.objectives.length===0){
+      status.textContent = 'Please complete the required fields.'; btn.disabled = false; return;
+    }
+
+    try{
+      const res = await fetch(ENDPOINT, {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ inputs: payload })
+      });
+      if(!res.ok) throw new Error('API error');
+      const data = await res.json(); // انتظار ساختار زیر:
+
+      /* ساختار مورد انتظار از API:
+         {
+           title: "…",
+           description: "…",
+           steps: [{text:"…", time:"…", materials:"…"}, ...]  یا  ["…","…"]
+           application: "…",
+           more: [{label:"…", url:"…", download:true|false}, ...]
+         }
+      */
+
+      // پر کردن مودال با پاسخ
+      titleEl.textContent = data.title || titleEl.textContent;
+      descEl.textContent  = data.description || '—';
+
+      // Steps می‌تواند آرایهٔ شیء یا رشته باشد
+      const steps = Array.isArray(data.steps) ? data.steps : [];
+      if(steps.length){
+        stepsEl.innerHTML = steps.map(s=>{
+          if(typeof s === 'string') return `<li>${s}</li>`;
+          const bits = [s.text, s.time ? `<em>(${s.time})</em>`:'', s.materials ? ` – ${s.materials}`:''].filter(Boolean).join(' ');
+          return `<li>${bits}</li>`;
+        }).join('');
+      }else{
+        stepsEl.innerHTML = '<li>—</li>';
+      }
+
+      appEl.textContent = data.application || '—';
+
+      // More Info
+      if(typeof renderLinks === 'function' && Array.isArray(data.more)){
+        linksEl.innerHTML = renderLinks(data.more);
+      }else{
+        linksEl.innerHTML = '<span style="color:#64748b;font-size:13px">Add links later.</span>';
+      }
+
+      status.textContent = 'Done ✔️';
+    }catch(err){
+      console.error(err);
+      status.textContent = 'Sorry, something went wrong. Try again.';
+    }finally{
+      btn.disabled = false;
+    }
+  }
+</script>
 </body>
 </html>
