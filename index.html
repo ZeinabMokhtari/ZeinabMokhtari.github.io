@@ -20,19 +20,21 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   }
 
-  #theme-toggle {
-  position: fixed;     /* همیشه بالای صفحه بمونه */
-  top: 10px;
-  left: 10px;
-  font-size: 26px;
-  background: yellow;
-  color: black;
-  border: 2px solid red;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 99999;      /* بالاتر از همه */
-}
+ #theme-toggle {
+    position: fixed;   /* همیشه بالای صفحه و جدا از بقیه */
+    top: 10px;
+    left: 10px;
+    font-size: 28px;
+    background: yellow;
+    color: black;
+    border: 2px solid red;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 99999;   /* بالاتر از همه‌چیز */
+    opacity: 1 !important; /* اگه جایی صفر شده باشه، اجباری درست می‌کنه */
+    display: block !important; /* اگه جایی none باشه، اجباری درست می‌کنه */
+  }
 </style>
 </head>
 
