@@ -7,86 +7,180 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f4f9;
+      background: #fdfdfd;
       text-align: center;
-      padding: 30px;
+      padding: 40px;
     }
-    .flashcards {
+    h1 {
+      margin-bottom: 20px;
+    }
+    .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 25px;
     }
-    .card {
-      width: 200px;
-      height: 150px;
-      perspective: 1000px;
-      cursor: pointer;
-    }
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-    }
-    .card.flipped .card-inner {
-      transform: rotateY(180deg);
-    }
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-    .card-front {
-      background: #2563eb;
-      color: white;
+    .circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .card-back {
-      background: white;
-      transform: rotateY(180deg);
-      font-size: 14px;
       color: #333;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .circle:hover {
+      transform: scale(1.1);
+    }
+
+    /* رنگ‌های پاستیلی */
+    .c1 { background: #ffd6a5; }
+    .c2 { background: #fdffb6; }
+    .c3 { background: #caffbf; }
+    .c4 { background: #9bf6ff; }
+    .c5 { background: #a0c4ff; }
+    .c6 { background: #bdb2ff; }
+    .c7 { background: #ffc6ff; }
+    .c8 { background: #fffffc; border: 1px solid #ddd; }
+
+    /* مودال */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      text-align: left;
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      top: 10px; right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #666;
     }
   </style>
 </head>
 <body>
-  <h1>Teaching Methods - Flashcards</h1>
-  <p>Click on a card to flip and see details.</p>
+  <h1>Teaching Methods - Click a Circle</h1>
+  <div class="container">
+    <div class="circle c1" onclick="openModal(1)">Cooperative Learning</div>
+    <div class="circle c2" onclick="openModal(2)">Project-Based Learning</div>
+    <!-- 28 دایره خالی -->
+    <div class="circle c3" onclick="openModal(3)">Method 3</div>
+    <div class="circle c4" onclick="openModal(4)">Method 4</div>
+    <div class="circle c5" onclick="openModal(5)">Method 5</div>
+    <div class="circle c6" onclick="openModal(6)">Method 6</div>
+    <div class="circle c7" onclick="openModal(7)">Method 7</div>
+    <div class="circle c8" onclick="openModal(8)">Method 8</div>
+    <div class="circle c1" onclick="openModal(9)">Method 9</div>
+    <div class="circle c2" onclick="openModal(10)">Method 10</div>
+    <div class="circle c3" onclick="openModal(11)">Method 11</div>
+    <div class="circle c4" onclick="openModal(12)">Method 12</div>
+    <div class="circle c5" onclick="openModal(13)">Method 13</div>
+    <div class="circle c6" onclick="openModal(14)">Method 14</div>
+    <div class="circle c7" onclick="openModal(15)">Method 15</div>
+    <div class="circle c8" onclick="openModal(16)">Method 16</div>
+    <div class="circle c1" onclick="openModal(17)">Method 17</div>
+    <div class="circle c2" onclick="openModal(18)">Method 18</div>
+    <div class="circle c3" onclick="openModal(19)">Method 19</div>
+    <div class="circle c4" onclick="openModal(20)">Method 20</div>
+    <div class="circle c5" onclick="openModal(21)">Method 21</div>
+    <div class="circle c6" onclick="openModal(22)">Method 22</div>
+    <div class="circle c7" onclick="openModal(23)">Method 23</div>
+    <div class="circle c8" onclick="openModal(24)">Method 24</div>
+    <div class="circle c1" onclick="openModal(25)">Method 25</div>
+    <div class="circle c2" onclick="openModal(26)">Method 26</div>
+    <div class="circle c3" onclick="openModal(27)">Method 27</div>
+    <div class="circle c4" onclick="openModal(28)">Method 28</div>
+    <div class="circle c5" onclick="openModal(29)">Method 29</div>
+    <div class="circle c6" onclick="openModal(30)">Method 30</div>
+  </div>
 
-  <div class="flashcards">
-    <!-- Card 1 -->
-    <div class="card" onclick="this.classList.toggle('flipped')">
-      <div class="card-inner">
-        <div class="card-front">Cooperative Learning</div>
-        <div class="card-back">
-          Students work in small groups to help each other learn.  
-          <br>Steps: Form groups → Assign roles → Solve tasks together.
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="card" onclick="this.classList.toggle('flipped')">
-      <div class="card-inner">
-        <div class="card-front">Project-Based Learning</div>
-        <div class="card-back">
-          Students learn by working on a project over time.  
-          <br>Steps: Define question → Research → Create project → Present results.
-        </div>
-      </div>
+  <!-- مودال -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
     </div>
   </div>
+
+  <script>
+    const modal = document.getElementById("myModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+
+    const contents = {
+      1: {
+        title: "Cooperative Learning",
+        text: "Students work in small groups to help each other learn.\nSteps: Form groups → Assign roles → Solve tasks together."
+      },
+      2: {
+        title: "Project-Based Learning",
+        text: "Students learn by working on a project over time.\nSteps: Define question → Research → Create project → Present results."
+      },
+      // بقیه خالی بمونن که خودت پر کنی
+      3: {title: "Method 3", text: ""},
+      4: {title: "Method 4", text: ""},
+      5: {title: "Method 5", text: ""},
+      6: {title: "Method 6", text: ""},
+      7: {title: "Method 7", text: ""},
+      8: {title: "Method 8", text: ""},
+      9: {title: "Method 9", text: ""},
+      10: {title: "Method 10", text: ""},
+      11: {title: "Method 11", text: ""},
+      12: {title: "Method 12", text: ""},
+      13: {title: "Method 13", text: ""},
+      14: {title: "Method 14", text: ""},
+      15: {title: "Method 15", text: ""},
+      16: {title: "Method 16", text: ""},
+      17: {title: "Method 17", text: ""},
+      18: {title: "Method 18", text: ""},
+      19: {title: "Method 19", text: ""},
+      20: {title: "Method 20", text: ""},
+      21: {title: "Method 21", text: ""},
+      22: {title: "Method 22", text: ""},
+      23: {title: "Method 23", text: ""},
+      24: {title: "Method 24", text: ""},
+      25: {title: "Method 25", text: ""},
+      26: {title: "Method 26", text: ""},
+      27: {title: "Method 27", text: ""},
+      28: {title: "Method 28", text: ""},
+      29: {title: "Method 29", text: ""},
+      30: {title: "Method 30", text: ""}
+    };
+
+    function openModal(id) {
+      modal.style.display = "flex";
+      modalTitle.textContent = contents[id].title;
+      modalText.textContent = contents[id].text;
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
 </body>
 </html>
-add games.html for flashcards
