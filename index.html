@@ -284,5 +284,24 @@ body:not(.light) #theme-toggle {
       });
     });
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const body = document.body;
+      const menuBtn = document.querySelector('.menu-btn');
+      const menu = document.querySelector('.menu');
+
+      // وقتی موس روی دکمه رفت → منو باز شه
+      menuBtn.addEventListener('mouseenter', () => {
+        body.classList.add('open');
+      });
+
+      // وقتی موس از روی دکمه یا منو رفت بیرون → منو بسته شه
+      [menuBtn, menu].forEach(el => {
+        el.addEventListener('mouseleave', () => {
+          body.classList.remove('open');
+        });
+      });
+    });
+  </script>
 </body>
 </html>
