@@ -21,27 +21,6 @@
     }
   </style>
 </head>
-  <script>
-  const toggleBtn = document.getElementById('theme-toggle');
-  const currentTheme = localStorage.getItem('theme');
-
-  if (currentTheme === 'light') {
-    document.body.classList.add('light');
-    toggleBtn.textContent = '☀️';
-  }
-
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light');
-    let theme = 'dark';
-    if (document.body.classList.contains('light')) {
-      theme = 'light';
-      toggleBtn.textContent = '☀️';
-    } else {
-      toggleBtn.textContent = '🌙';
-    }
-    localStorage.setItem('theme', theme);
-  });
-</script>
 
 <body>
   <header class="site-header">
