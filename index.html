@@ -72,11 +72,23 @@ body:not(.light) #theme-toggle {
   .menu { gap: 12px; }
   #theme-toggle { margin-left: 8px; }
 }
+    .profile-pic {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* روی موبایل میره زیر متن */
+}
     </style>
 
-<!-- اینجا کد جدیدی که من دادم رو بذار -->
 <style>
-  /* کدهای رنگ و منو که برات نوشتم */
   :root {
     --bg: #0f1115;
     --nav-bg: rgba(22, 24, 29, 0.85);
@@ -188,6 +200,16 @@ body:not(.light) #theme-toggle {
       I am interested in developmental research and in evaluating the effectiveness of interventions that enhance student learning through artificial intelligence technologies, as well as digital and non-digital games. I hold a Joint Ph.D. in Education and Educational Administration from Technische Universität Dresden and Shiraz University, an M.A. in Human Resources Training and Development from Shahid Beheshti University, and a B.A. in Educational Administration and Planning from Shiraz University.
     </p>
   </section>
+  <section id="about" class="section">
+  <h2>About Me</h2>
+  <div class="about-container">
+    <img src="assets/mypic.jpg" alt="My Photo" class="profile-pic">
+
+    <p>
+      I am interested in developmental research and in evaluating the effectiveness of interventions that enhance student learning through artificial intelligence technologies, as well as digital and non-digital games. I hold a Joint Ph.D. in Education and Educational Administration from Technische Universität Dresden and Shiraz University, an M.A. in Human Resources Training and Development from Shahid Beheshti University, and a B.A. in Educational Administration and Planning from Shiraz University.
+    </p>
+  </div>
+</section>
 
   <section id="interests" class="section">
     <h2>Research Interests</h2>
