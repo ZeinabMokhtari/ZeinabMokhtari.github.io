@@ -75,7 +75,7 @@
     }
     body.modal-open{overflow:hidden}
     .modal-card{
-      width:min(800px,92vw);
+      width:min(860px,92vw);
       background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, #fff) 0%, #ffffff 60%);
       border:1px solid color-mix(in srgb, var(--accent) 35%, #cbd5e1);
       border-radius:20px;
@@ -126,6 +126,17 @@
     .steps li{ margin:6px 0; line-height:1.6; font-size:14.5px }
     .app{ margin:0; color:#0f5132; background: #d1fae5; border:1px solid #a7f3d0; padding:10px 12px; border-radius:10px; }
 
+    /* لینک‌ها در More Info */
+    .links { display:flex; flex-wrap:wrap; gap:8px; }
+    .link-btn{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:8px 12px; border-radius:10px; font-size:13px; text-decoration:none;
+      color:#0b1220; background:#fff; border:1px solid color-mix(in srgb, var(--accent) 55%, #cbd5e1);
+      box-shadow: 0 3px 10px rgba(0,0,0,.06);
+      transition: transform .15s, filter .15s;
+    }
+    .link-btn:hover{ transform: translateY(-2px); filter: brightness(1.03); }
+
     @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
     @keyframes popIn{ from{transform:translateY(12px) scale(.98); opacity:0} to{transform:translateY(0) scale(1); opacity:1} }
 
@@ -138,39 +149,39 @@
 </head>
 <body>
   <h1>Teaching Methods</h1>
-  <p class="sub">Click a circle to open a detailed card with <strong>Description</strong>, <strong>Steps</strong>, and <strong>Application</strong>.</p>
+  <p class="sub">Click a circle to open a detailed card with <strong>Description</strong>, <strong>Steps</strong>, <strong>Application</strong>, and <strong>More Info</strong>.</p>
 
   <div class="container" id="circles">
     <div class="circle c1"  onclick="openModal(1,this)">Cooperative Learning</div>
     <div class="circle c2"  onclick="openModal(2,this)">Project-Based Learning</div>
-    <div class="circle c3"  onclick="openModal(3,this)">Method 3</div>
-    <div class="circle c4"  onclick="openModal(4,this)">Method 4</div>
-    <div class="circle c5"  onclick="openModal(5,this)">Method 5</div>
-    <div class="circle c6"  onclick="openModal(6,this)">Method 6</div>
-    <div class="circle c7"  onclick="openModal(7,this)">Method 7</div>
-    <div class="circle c8"  onclick="openModal(8,this)">Method 8</div>
-    <div class="circle c9"  onclick="openModal(9,this)">Method 9</div>
-    <div class="circle c10" onclick="openModal(10,this)">Method 10</div>
-    <div class="circle c11" onclick="openModal(11,this)">Method 11</div>
-    <div class="circle c12" onclick="openModal(12,this)">Method 12</div>
-    <div class="circle c13" onclick="openModal(13,this)">Method 13</div>
-    <div class="circle c14" onclick="openModal(14,this)">Method 14</div>
-    <div class="circle c15" onclick="openModal(15,this)">Method 15</div>
-    <div class="circle c16" onclick="openModal(16,this)">Method 16</div>
-    <div class="circle c17" onclick="openModal(17,this)">Method 17</div>
-    <div class="circle c18" onclick="openModal(18,this)">Method 18</div>
-    <div class="circle c19" onclick="openModal(19,this)">Method 19</div>
-    <div class="circle c20" onclick="openModal(20,this)">Method 20</div>
-    <div class="circle c21" onclick="openModal(21,this)">Method 21</div>
-    <div class="circle c22" onclick="openModal(22,this)">Method 22</div>
-    <div class="circle c23" onclick="openModal(23,this)">Method 23</div>
-    <div class="circle c24" onclick="openModal(24,this)">Method 24</div>
-    <div class="circle c25" onclick="openModal(25,this)">Method 25</div>
-    <div class="circle c26" onclick="openModal(26,this)">Method 26</div>
-    <div class="circle c27" onclick="openModal(27,this)">Method 27</div>
-    <div class="circle c28" onclick="openModal(28,this)">Method 28</div>
-    <div class="circle c29" onclick="openModal(29,this)">Method 29</div>
-    <div class="circle c30" onclick="openModal(30,this)">Method 30</div>
+    <div class="circle c3"  onclick="openModal(3,this)">Flipped Classroom</div>
+    <div class="circle c4"  onclick="openModal(4,this)">Station Rotation</div>
+    <div class="circle c5"  onclick="openModal(5,this)">Gamified Learning</div>
+    <div class="circle c6"  onclick="openModal(6,this)">Digital Escape Room</div>
+    <div class="circle c7"  onclick="openModal(7,this)">Inquiry WebQuest</div>
+    <div class="circle c8"  onclick="openModal(8,this)">Peer Instruction</div>
+    <div class="circle c9"  onclick="openModal(9,this)">Interactive Sims</div>
+    <div class="circle c10" onclick="openModal(10,this)">AR / VR</div>
+    <div class="circle c11" onclick="openModal(11,this)">Virtual Labs</div>
+    <div class="circle c12" onclick="openModal(12,this)">Adaptive Paths</div>
+    <div class="circle c13" onclick="openModal(13,this)">AI Tutoring</div>
+    <div class="circle c14" onclick="openModal(14,this)">H5P Video</div>
+    <div class="circle c15" onclick="openModal(15,this)">Digital Story</div>
+    <div class="circle c16" onclick="openModal(16,this)">Concept Mapping</div>
+    <div class="circle c17" onclick="openModal(17,this)">Collab Docs</div>
+    <div class="circle c18" onclick="openModal(18,this)">Social Annotation</div>
+    <div class="circle c19" onclick="openModal(19,this)">Peer Review</div>
+    <div class="circle c20" onclick="openModal(20,this)">Formative Quiz</div>
+    <div class="circle c21" onclick="openModal(21,this)">Analytics</div>
+    <div class="circle c22" onclick="openModal(22,this)">Mastery Learning</div>
+    <div class="circle c23" onclick="openModal(23,this)">Spaced Repetition</div>
+    <div class="circle c24" onclick="openModal(24,this)">Branching Case</div>
+    <div class="circle c25" onclick="openModal(25,this)">Maker / STEAM</div>
+    <div class="circle c26" onclick="openModal(26,this)">Podcasting</div>
+    <div class="circle c27" onclick="openModal(27,this)">Data Projects</div>
+    <div class="circle c28" onclick="openModal(28,this)">Scratch Coding</div>
+    <div class="circle c29" onclick="openModal(29,this)">Virtual Field Trip</div>
+    <div class="circle c30" onclick="openModal(30,this)">Design Thinking</div>
   </div>
 
   <!-- MODAL -->
@@ -194,6 +205,10 @@
           <h3 class="kb-head"><span class="emoji">🎯</span> Application</h3>
           <p class="app" id="mApp"></p>
         </section>
+        <section class="kb-section">
+          <h3 class="kb-head"><span class="emoji">🔗</span> More Info</h3>
+          <div class="links" id="mLinks"></div>
+        </section>
       </div>
     </div>
   </div>
@@ -204,74 +219,409 @@
     const descEl  = document.getElementById('mDesc');
     const stepsEl = document.getElementById('mSteps');
     const appEl   = document.getElementById('mApp');
+    const linksEl = document.getElementById('mLinks');
     const card    = document.querySelector('.modal-card');
 
-    // محتوای نمونه برای 2 روش؛ بقیه خالی بماند تا خودت پر کنی
+    /* 
+      ساختار هر مورد:
+      {
+        title:"...", 
+        description:"...", 
+        steps:["...", "..."], 
+        application:"...", 
+        more:[ {label:"...", url:"...", download:true|false}, ... ]
+      }
+      - برای لینک فایل داخل ریپو (مثلا PDF): url: "assets/file.pdf", download:true
+      - اگر چیزی نداری، آرایه more رو خالی بذار []
+    */
     const contents = {
       1:{
         title:"Cooperative Learning",
-        description:"Students work in small, diverse groups and take shared responsibility for achieving learning goals. Each member has a role and supports peers.",
+        description:"Students work in small, diverse groups with shared goals and individual accountability; roles and peer support drive learning.",
         steps:[
-          "Form groups (3–5) with mixed abilities and assign roles (facilitator, recorder, checker, reporter).",
-          "Present a clear task with shared goals and individual accountability.",
-          "Monitor group processes; prompt positive interdependence and peer feedback.",
-          "Have groups present outcomes; debrief on collaboration skills."
+          "Form 3–5 member groups; assign roles (facilitator, recorder, checker, reporter).",
+          "Define a shared goal and individual deliverables for accountability.",
+          "Monitor process, model social skills, prompt peer feedback.",
+          "Share results; reflect on collaboration and learning."
         ],
-        application:"Use for problem-solving, jigsaw reading, peer instruction, and lab activities where teamwork and communication are key."
+        application:"Great for problem-solving, jigsaw reading, peer instruction, and labs to build communication and teamwork.",
+        more:[]
       },
       2:{
         title:"Project-Based Learning",
-        description:"Learners explore an authentic question/problem over time and create a product or presentation, integrating research, design, and reflection.",
+        description:"Learners investigate an authentic question over time and create products/presentations through inquiry, design, and reflection.",
         steps:[
-          "Define an authentic driving question aligned with standards.",
-          "Plan milestones and roles; provide resources and checkpoints.",
-          "Support inquiry, prototyping, and revisions based on feedback.",
-          "Showcase final products and reflect on process and outcomes."
+          "Craft a driving question and success criteria.",
+          "Plan milestones, roles, and resources; set checkpoints.",
+          "Support research, prototyping, revisions via feedback.",
+          "Showcase products; reflect on process and outcomes."
         ],
-        application:"Great for interdisciplinary units, community-based projects, and real-world challenges that require creativity and sustained inquiry."
+        application:"Interdisciplinary units, community challenges, real-world briefs where creativity and persistence matter.",
+        more:[]
       },
-      3:{title:"Method 3", description:"", steps:[], application:""},
-      4:{title:"Method 4", description:"", steps:[], application:""},
-      5:{title:"Method 5", description:"", steps:[], application:""},
-      6:{title:"Method 6", description:"", steps:[], application:""},
-      7:{title:"Method 7", description:"", steps:[], application:""},
-      8:{title:"Method 8", description:"", steps:[], application:""},
-      9:{title:"Method 9", description:"", steps:[], application:""},
-      10:{title:"Method 10", description:"", steps:[], application:""},
-      11:{title:"Method 11", description:"", steps:[], application:""},
-      12:{title:"Method 12", description:"", steps:[], application:""},
-      13:{title:"Method 13", description:"", steps:[], application:""},
-      14:{title:"Method 14", description:"", steps:[], application:""},
-      15:{title:"Method 15", description:"", steps:[], application:""},
-      16:{title:"Method 16", description:"", steps:[], application:""},
-      17:{title:"Method 17", description:"", steps:[], application:""},
-      18:{title:"Method 18", description:"", steps:[], application:""},
-      19:{title:"Method 19", description:"", steps:[], application:""},
-      20:{title:"Method 20", description:"", steps:[], application:""},
-      21:{title:"Method 21", description:"", steps:[], application:""},
-      22:{title:"Method 22", description:"", steps:[], application:""},
-      23:{title:"Method 23", description:"", steps:[], application:""},
-      24:{title:"Method 24", description:"", steps:[], application:""},
-      25:{title:"Method 25", description:"", steps:[], application:""},
-      26:{title:"Method 26", description:"", steps:[], application:""},
-      27:{title:"Method 27", description:"", steps:[], application:""},
-      28:{title:"Method 28", description:"", steps:[], application:""},
-      29:{title:"Method 29", description:"", steps:[], application:""},
-      30:{title:"Method 30", description:"", steps:[], application:""}
+      3:{
+        title:"Flipped Classroom",
+        description:"Direct instruction moves outside class (videos/readings) so in-class time focuses on practice, feedback, and higher-order tasks.",
+        steps:[
+          "Provide short pre-class content (video, reading, quiz).",
+          "Check understanding with a quick formative task.",
+          "Use class for discussion, problem-solving, coaching.",
+          "Close with reflection and next-step resources."
+        ],
+        application:"Math worked examples, language practice, lab prep; boosts active time with the teacher.",
+        more:[]
+      },
+      4:{
+        title:"Station Rotation (Blended)",
+        description:"Students rotate through online, teacher-led, and collaborative stations to differentiate pace and support.",
+        steps:[
+          "Design 3–4 stations (online practice, small-group mini-lesson, collaboration, extension).",
+          "Set timers and clear goals/resources per station.",
+          "Monitor, confer, and adjust groups by need.",
+          "Collect quick evidence; rotate next session."
+        ],
+        application:"Great for mixed-ability classes; balances tech practice with targeted instruction.",
+        more:[]
+      },
+      5:{
+        title:"Gamified Learning",
+        description:"Applies game elements (points, levels, badges, quests) to boost engagement and persistence in non-game tasks.",
+        steps:[
+          "Define learning goals → map to quests/challenges.",
+          "Design points, levels, badges with clear criteria.",
+          "Add feedback, streaks, and optional leaderboards.",
+          "Reflect on strategies and progress, not just points."
+        ],
+        application:"Vocabulary missions, math quests, writing streaks; supports motivation and practice.",
+        more:[]
+      },
+      6:{
+        title:"Digital Escape Room",
+        description:"Learners solve curriculum-aligned puzzles/riddles in a themed scenario to 'unlock' stages collaboratively.",
+        steps:[
+          "Pick theme and standards; craft narrative and puzzles.",
+          "Build locks/clues (forms, slides, sites, QR codes).",
+          "Assign roles; timebox; encourage clue-sharing.",
+          "Debrief on content and collaboration strategies."
+        ],
+        application:"Review units, launch projects, assess applied understanding in teams.",
+        more:[]
+      },
+      7:{
+        title:"Inquiry WebQuest",
+        description:"Guided online inquiry with curated resources and structured tasks culminating in a product or presentation.",
+        steps:[
+          "Pose an open-ended driving task and roles.",
+          "Curate credible resources; scaffold note-taking.",
+          "Assign deliverable (report, poster, video).",
+          "Share findings; evaluate sources and claims."
+        ],
+        application:"History controversies, science phenomena, media literacy and source evaluation.",
+        more:[]
+      },
+      8:{
+        title:"Peer Instruction (Live Polling)",
+        description:"Concept questions with vote–discuss–revote cycles leverage peer explanations to correct misconceptions.",
+        steps:[
+          "Pose a conceptual multiple-choice question.",
+          "Students vote individually (clicker/poll).",
+          "Pairs discuss reasoning; revote.",
+          "Explain and clarify; capture misconceptions."
+        ],
+        application:"STEM concepts, grammar usage, conceptual checkpoints across subjects.",
+        more:[]
+      },
+      9:{
+        title:"Interactive Simulations",
+        description:"Students manipulate variables in interactive models to explore cause–effect and build conceptual understanding.",
+        steps:[
+          "Introduce key variables and prediction prompt.",
+          "Explore the sim; collect observations/data.",
+          "Discuss patterns; connect to formal models.",
+          "Apply learning to new scenarios."
+        ],
+        application:"Physics, chemistry, econ, ecology; supports inquiry with immediate visual feedback.",
+        more:[]
+      },
+      10:{
+        title:"AR / VR Explorations",
+        description:"Augmented/virtual reality immerses learners in places, processes, or phenomena that are otherwise inaccessible.",
+        steps:[
+          "Set clear objectives and safety/ethics norms.",
+          "Guide exploration tasks and checkpoints.",
+          "Prompt reflection (what? so what? now what?).",
+          "Transfer insights to class projects."
+        ],
+        application:"Virtual field trips, anatomy, historical sites, lab simulations.",
+        more:[]
+      },
+      11:{
+        title:"Virtual Labs",
+        description:"Simulated labs model procedures and data collection for practice, preview, or make-up experiences.",
+        steps:[
+          "Brief goals and lab protocol.",
+          "Run the simulation; record data/notes.",
+          "Analyze results; compare with expected patterns.",
+          "Reflect on limitations and next steps."
+        ],
+        application:"When equipment/time is limited; pre-lab practice to maximize in-person lab time.",
+        more:[]
+      },
+      12:{
+        title:"Adaptive Learning Paths",
+        description:"Rules or algorithms personalize content/pace based on performance and mastery evidence.",
+        steps:[
+          "Define mastery criteria and item banks.",
+          "Set branching rules/remediation actions.",
+          "Monitor dashboards; intervene strategically.",
+          "Periodically reset/extend goals."
+        ],
+        application:"Math skills practice, literacy pathways, language learning drills.",
+        more:[]
+      },
+      13:{
+        title:"AI-Assisted Tutoring / LLM Scaffolding",
+        description:"AI provides hints, feedback, and examples aligned with teacher rubrics while preserving academic integrity.",
+        steps:[
+          "Write guardrailed prompts (criteria, tone, limits).",
+          "Embed checkpoints (self-explain before hint).",
+          "Review AI feedback; add teacher corrections.",
+          "Log reflections to build self-regulation."
+        ],
+        application:"Draft feedback, code help, language practice; supports differentiation at scale.",
+        more:[]
+      },
+      14:{
+        title:"H5P Interactive Video",
+        description:"Videos with embedded questions, hotspots, and summaries to reinforce active processing.",
+        steps:[
+          "Chunk video; insert checks every 2–3 mins.",
+          "Add hints/explanations for wrong answers.",
+          "Enable retry and summary report.",
+          "Use results to plan mini-lessons."
+        ],
+        application:"Flipped content with accountability; multilingual captions.",
+        more:[]
+      },
+      15:{
+        title:"Digital Storytelling",
+        description:"Students combine script, images, audio, and video to communicate ideas with narrative structure.",
+        steps:[
+          "Plan storyline and storyboard frames.",
+          "Collect/produce media with citations.",
+          "Edit, caption, and add voice-over.",
+          "Publish and peer-review using rubric."
+        ],
+        application:"History biographies, science explainers, SEL narratives; amplifies student voice.",
+        more:[]
+      },
+      16:{
+        title:"Concept Mapping",
+        description:"Visual maps show concepts and relationships, aiding organization and knowledge integration.",
+        steps:[
+          "Brainstorm key ideas/terms.",
+          "Connect nodes with labeled links.",
+          "Revise hierarchy and cross-links.",
+          "Explain the map to a peer."
+        ],
+        application:"Pre/post assessment, planning essays, clarifying complex systems.",
+        more:[]
+      },
+      17:{
+        title:"Collaborative Documents",
+        description:"Real-time co-authoring with comments and version history builds shared products and accountability.",
+        steps:[
+          "Set roles (lead, editor, checker).",
+          "Use comments/suggestions for feedback.",
+          "Track changes; resolve threads.",
+          "Submit final with contribution log."
+        ],
+        application:"Group reports, lab notebooks, class wikis.",
+        more:[]
+      },
+      18:{
+        title:"Social Annotation",
+        description:"Students annotate readings together, questioning, linking, and explaining in the margins.",
+        steps:[
+          "Assign purpose (clarify, critique, connect).",
+          "Seed prompts/tags; model quality notes.",
+          "Require replies and upvotes/likes.",
+          "Synthesize insights in class."
+        ],
+        application:"Close reading, research articles, media literacy.",
+        more:[]
+      },
+      19:{
+        title:"Peer Review Platforms",
+        description:"Structured peer feedback with rubrics improves drafts and evaluative judgment.",
+        steps:[
+          "Share rubric and exemplars.",
+          "Anonymous peer review (2–3 reviewers).",
+          "Revise using actionable comments.",
+          "Reflect on giving/receiving feedback."
+        ],
+        application:"Writing, design projects, presentations; builds metacognition.",
+        more:[]
+      },
+      20:{
+        title:"Formative Quiz (Low-Stakes)",
+        description:"Quick checks for understanding guide immediate teaching decisions and student self-correction.",
+        steps:[
+          "Create brief quiz aligned to objectives.",
+          "Run in class or as pre-work; show item-level feedback.",
+          "Address common errors right away.",
+          "Log data to track growth."
+        ],
+        application:"Do-now, exit tickets, pre/post checks.",
+        more:[]
+      },
+      21:{
+        title:"Learning Analytics",
+        description:"Dashboards aggregate activity/assessment data to spot patterns and inform interventions.",
+        steps:[
+          "Pick key indicators (engagement, mastery).",
+          "Visualize by student/skill/time.",
+          "Plan targeted supports.",
+          "Evaluate impact and iterate."
+        ],
+        application:"Early warning, grouping, RTI/MTSS decisions.",
+        more:[]
+      },
+      22:{
+        title:"Mastery-Based Learning",
+        description:"Progress depends on demonstrating mastery, not seat time; learners get multiple pathways and attempts.",
+        steps:[
+          "Define competencies and performance levels.",
+          "Align tasks to rubrics and exemplars.",
+          "Offer reassessment paths and feedback cycles.",
+          "Track mastery over time transparently."
+        ],
+        application:"Unit recovery, differentiation, personalized pacing.",
+        more:[]
+      },
+      23:{
+        title:"Spaced Repetition / Microlearning",
+        description:"Short, frequent practice with spaced intervals improves long-term retention.",
+        steps:[
+          "Break content into micro-cards.",
+          "Schedule spaced practice (1, 3, 7 days…).",
+          "Mix retrieval modes (recall, recognition).",
+          "Review difficult items more often."
+        ],
+        application:"Vocabulary, formulas, key facts across subjects.",
+        more:[]
+      },
+      24:{
+        title:"Branching Case (Twine)",
+        description:"Learners make choices in scenarios and see consequences, practicing judgment safely.",
+        steps:[
+          "Map decision tree tied to outcomes.",
+          "Write scenes with feedback at branches.",
+          "Playtest for clarity/balance.",
+          "Debrief choices and principles."
+        ],
+        application:"Ethics, clinical reasoning, classroom management, safety.",
+        more:[]
+      },
+      25:{
+        title:"Maker / STEAM (Arduino/micro:bit)",
+        description:"Hands-on builds integrate coding, electronics, and design to solve authentic problems.",
+        steps:[
+          "Frame a challenge and constraints.",
+          "Prototype with kits; iterate with tests.",
+          "Document builds (photos, code repos).",
+          "Showcase and reflect on design choices."
+        ],
+        application:"Prototyping sensors, art+tech, engineering tasks.",
+        more:[]
+      },
+      26:{
+        title:"Podcasting / Student Media",
+        description:"Audio episodes develop research, scripting, and speaking skills for authentic audiences.",
+        steps:[
+          "Plan episode outline and roles.",
+          "Record clean audio; add music safely-licensed.",
+          "Edit and publish with show notes.",
+          "Solicit peer/community feedback."
+        ],
+        application:"Interview experts, explainers, oral histories.",
+        more:[]
+      },
+      27:{
+        title:"Data Projects & Visualization",
+        description:"Students analyze datasets and communicate insights with clear visuals and narratives.",
+        steps:[
+          "Pose a question; gather/clean data.",
+          "Analyze and chart appropriately.",
+          "Write data stories with evidence.",
+          "Present and field questions."
+        ],
+        application:"Civics data, science experiments, school surveys.",
+        more:[]
+      },
+      28:{
+        title:"Scratch Coding Across Curriculum",
+        description:"Block-based coding builds computational thinking to model stories, simulations, and games.",
+        steps:[
+          "Plan project (sprite behaviors, scenes).",
+          "Build incrementally; test often.",
+          "Peer share and debug collaboratively.",
+          "Publish and reflect on logic."
+        ],
+        application:"Math models, interactive stories, science demos.",
+        more:[]
+      },
+      29:{
+        title:"Virtual Field Trip (Maps/Earth)",
+        description:"Explorations with street view, tours, and overlays to connect places with content.",
+        steps:[
+          "Set inquiry focus and locations.",
+          "Collect observations/screenshots.",
+          "Annotate map/tour with captions.",
+          "Share guided tour with class."
+        ],
+        application:"Geography, ecology, history, art/architecture.",
+        more:[]
+      },
+      30:{
+        title:"Design Thinking Challenge",
+        description:"Human-centered problem solving through empathize–define–ideate–prototype–test cycles.",
+        steps:[
+          "Empathize via interviews/observations.",
+          "Define user needs and insights.",
+          "Ideate many solutions; select to prototype.",
+          "Test with users; iterate and refine."
+        ],
+        application:"Community challenges, product/service design, classroom improvements.",
+        more:[]
+      }
     };
+
+    function renderLinks(arr){
+      if(!arr || !arr.length){
+        return `<span style="color:#64748b;font-size:13px">Add links to articles, videos, or files later.</span>`;
+      }
+      return arr.map(l=>{
+        const attrs = `href="${l.url}" target="_blank" rel="noopener" ${l.download ? 'download' : ''}`;
+        const icon  = l.download ? '📎' : '🔗';
+        const label = l.label || (l.download ? 'Download file' : 'Open link');
+        return `<a class="link-btn" ${attrs}>${icon} ${label}</a>`;
+      }).join('');
+    }
 
     function openModal(id, el){
       // رنگ دایره را به عنوان accent مودال بگذار
       const bg = getComputedStyle(el).backgroundColor;
       card.style.setProperty('--accent', bg);
 
-      const c = contents[id] || {title:"", description:"", steps:[], application:""};
+      const c = contents[id] || {title:"", description:"", steps:[], application:"", more:[]};
       titleEl.textContent = c.title || `Method ${id}`;
       descEl.textContent  = c.description || "—";
       stepsEl.innerHTML   = (c.steps && c.steps.length)
         ? c.steps.map(st => `<li>${st}</li>`).join("")
         : `<li>—</li>`;
       appEl.textContent   = c.application || "—";
+      linksEl.innerHTML   = renderLinks(c.more);
 
       modal.style.display = 'flex';
       document.body.classList.add('modal-open');
