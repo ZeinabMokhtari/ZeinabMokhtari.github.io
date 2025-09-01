@@ -1,225 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teaching Methods - Flashcards</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teaching Methods – Flashcards</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fdfdfd;
-      text-align: center;
-      padding: 40px;
+    :root{
+      --bg:#f7f9fc;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --shadowA: rgba(0,0,0,.15);
+      --shadowB: rgba(255,255,255,.7);
+      --accent:#a0c4ff; /* در زمان باز شدن مودال از رنگ دایره مقداردهی می‌شود */
     }
-    h1 {
-      margin-bottom: 20px;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background: var(--bg);
+      color: var(--text);
+      text-align:center;
+      padding:40px 20px 60px;
     }
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+    h1{
+      margin:0 0 8px;
+      font-size: clamp(22px,3vw,32px);
+      letter-spacing:.2px;
     }
-    .circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #333;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 4px 4px 10px rgba(0,0,0,0.15), -4px -4px 10px rgba(255,255,255,0.6);
-      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    .sub{
+      margin:0 0 28px;
+      color: var(--muted);
+      font-size:14px;
     }
-    .circle:hover {
+
+    /* دایره‌ها */
+    .container{
+      display:flex; flex-wrap:wrap; justify-content:center; gap:28px;
+      max-width:1100px; margin:0 auto;
+    }
+    .circle{
+      width:120px; height:120px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      color:#222; font-weight:700; font-size:13px; text-align:center;
+      cursor:pointer; user-select:none;
+      box-shadow: 6px 6px 14px var(--shadowA), -6px -6px 14px var(--shadowB);
+      transition: transform .25s, box-shadow .25s, filter .25s;
+      padding:14px;
+    }
+    .circle:hover{
       transform: scale(1.12);
-      box-shadow: 6px 6px 14px rgba(0,0,0,0.2), -6px -6px 14px rgba(255,255,255,0.7);
-      filter: brightness(1.08);
+      box-shadow: 10px 10px 22px rgba(0,0,0,.22), -8px -8px 18px rgba(255,255,255,.8);
+      filter: brightness(1.08) saturate(1.05);
     }
+    /* چیدمان نامنظم (ملایم) */
+    .circle:nth-child(3n){ transform: rotate(-6deg) translateY(10px); }
+    .circle:nth-child(4n){ transform: rotate(5deg) translateY(-12px); }
+    .circle:nth-child(5n){ transform: rotate(-8deg) translateX(8px); }
+    .circle:nth-child(7n){ transform: rotate(4deg) translateX(-6px) translateY(4px); }
 
-    /* ۳۰ رنگ پاستیلی */
-    .c1 { background: #ffd6a5; }
-    .c2 { background: #fdffb6; }
-    .c3 { background: #caffbf; }
-    .c4 { background: #9bf6ff; }
-    .c5 { background: #a0c4ff; }
-    .c6 { background: #bdb2ff; }
-    .c7 { background: #ffc6ff; }
-    .c8 { background: #ffadad; }
-    .c9 { background: #ffdab9; }
-    .c10 { background: #e2f0cb; }
-    .c11 { background: #b5ead7; }
-    .c12 { background: #c7ceea; }
-    .c13 { background: #fbc4ab; }
-    .c14 { background: #fde2e4; }
-    .c15 { background: #fad2e1; }
-    .c16 { background: #e4c1f9; }
-    .c17 { background: #d0f4de; }
-    .c18 { background: #fff1e6; }
-    .c19 { background: #ffdeeb; }
-    .c20 { background: #e2ece9; }
-    .c21 { background: #dfe7fd; }
-    .c22 { background: #f1f7b5; }
-    .c23 { background: #ffb5a7; }
-    .c24 { background: #fcd5ce; }
-    .c25 { background: #d8e2dc; }
-    .c26 { background: #ece4db; }
-    .c27 { background: #fde4cf; }
-    .c28 { background: #cddafd; }
-    .c29 { background: #e9edc9; }
-    .c30 { background: #fec5bb; }
+    /* 30 رنگ پاستیلی (هیچ‌کدام سفید خالص نیست) */
+    .c1{background:#ffd6a5} .c2{background:#fdffb6} .c3{background:#caffbf} .c4{background:#9bf6ff} .c5{background:#a0c4ff}
+    .c6{background:#bdb2ff} .c7{background:#ffc6ff} .c8{background:#ffadad} .c9{background:#ffdab9} .c10{background:#e2f0cb}
+    .c11{background:#b5ead7} .c12{background:#c7ceea} .c13{background:#fbc4ab} .c14{background:#fde2e4} .c15{background:#fad2e1}
+    .c16{background:#e4c1f9} .c17{background:#d0f4de} .c18{background:#ffe5d9} .c19{background:#ffdeeb} .c20{background:#e2ece9}
+    .c21{background:#dfe7fd} .c22{background:#f1f7b5} .c23{background:#ffb5a7} .c24{background:#fcd5ce} .c25{background:#d8e2dc}
+    .c26{background:#ece4db} .c27{background:#fde4cf} .c28{background:#cddafd} .c29{background:#e9edc9} .c30{background:#fec5bb}
 
-    /* چیدمان نامنظم */
-    .circle:nth-child(3n) { transform: rotate(-6deg) translateY(8px); }
-    .circle:nth-child(4n) { transform: rotate(5deg) translateY(-12px); }
-    .circle:nth-child(5n) { transform: rotate(-8deg) translateX(8px); }
+    /* MODAL */
+    .modal{display:none; position:fixed; inset:0; z-index:1000;
+      background: radial-gradient(1200px 800px at 70% 20%, rgba(0,0,0,.55), rgba(0,0,0,.7));
+      justify-content:center; align-items:center; padding:24px;
+      animation:fadeIn .25s ease;
+    }
+    body.modal-open{overflow:hidden}
+    .modal-card{
+      width:min(800px,92vw);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, #fff) 0%, #ffffff 60%);
+      border:1px solid color-mix(in srgb, var(--accent) 35%, #cbd5e1);
+      border-radius:20px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.35);
+      text-align:left; position:relative; overflow:hidden;
+      animation:popIn .32s ease;
+    }
+    .card-header{
+      padding:18px 68px 16px 22px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 65%, #fff), color-mix(in srgb, var(--accent) 30%, #fff) 60%);
+      color:#0b1220;
+    }
+    .title{
+      margin:0; font-weight:800; letter-spacing:.3px;
+      font-size: clamp(18px,2.6vw,26px);
+    }
+    .chip{
+      display:inline-block; margin-top:6px; font-size:12px; color:#0b1220; opacity:.85;
+      background: color-mix(in srgb, var(--accent) 35%, #fff);
+      border:1px solid color-mix(in srgb, var(--accent) 55%, #cbd5e1);
+      padding:4px 8px; border-radius:999px;
+    }
+    .close{
+      position:absolute; right:12px; top:10px; width:40px; height:40px; border-radius:50%;
+      border:none; cursor:pointer; font-size:22px; line-height:40px; text-align:center;
+      background: #ffffffaa;
+      box-shadow: 4px 4px 10px rgba(0,0,0,.15), -4px -4px 10px rgba(255,255,255,.7);
+      transition: transform .2s, filter .2s;
+    }
+    .close:hover{ transform: scale(1.07); filter: brightness(1.05); }
 
-    /* مودال */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.3s;
+    .card-body{ padding:18px 22px 24px; display:grid; gap:14px }
+    .kb-section{
+      background: #ffffffea;
+      border:1px solid #e5e7eb;
+      border-left:6px solid var(--accent);
+      border-radius:14px;
+      padding:14px 16px 14px;
+      box-shadow: 0 8px 18px rgba(0,0,0,.06);
     }
-    .modal-content {
-      background: linear-gradient(135deg, #ffffff, #f0f4ff);
-      padding: 35px;
-      max-width: 600px;
-      border-radius: 18px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      text-align: left;
-      position: relative;
-      animation: popIn 0.4s ease;
+    .kb-head{
+      font-size:13px; font-weight:800; letter-spacing:.6px; text-transform:uppercase;
+      color:#0b1220; display:flex; align-items:center; gap:8px; margin:0 0 8px;
     }
-    .close {
-      position: absolute;
-      top: 12px; right: 18px;
-      font-size: 26px;
-      cursor: pointer;
-      color: #555;
-      transition: color 0.3s;
-    }
-    .close:hover {
-      color: #e63946;
-    }
+    .kb-head .emoji{ font-size:16px }
+    .desc{ margin:0; color:#111827; line-height:1.6; font-size:14.5px }
+    .steps{ margin:8px 0 0 0; padding-left:18px; color:#111827 }
+    .steps li{ margin:6px 0; line-height:1.6; font-size:14.5px }
+    .app{ margin:0; color:#0f5132; background: #d1fae5; border:1px solid #a7f3d0; padding:10px 12px; border-radius:10px; }
 
-    /* انیمیشن‌ها */
-    @keyframes fadeIn {
-      from { background: rgba(0,0,0,0); }
-      to { background: rgba(0,0,0,0.6); }
-    }
-    @keyframes popIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+    @keyframes popIn{ from{transform:translateY(12px) scale(.98); opacity:0} to{transform:translateY(0) scale(1); opacity:1} }
+
+    /* ریسپانسیو برای موبایل */
+    @media (max-width:520px){
+      .circle{ width:104px; height:104px; font-size:12px; padding:10px }
+      .card-body{ padding:14px }
     }
   </style>
 </head>
 <body>
-  <h1>Teaching Methods - Click a Circle</h1>
-  <div class="container">
-    <div class="circle c1" onclick="openModal(1)">Cooperative Learning</div>
-    <div class="circle c2" onclick="openModal(2)">Project-Based Learning</div>
-    <div class="circle c3" onclick="openModal(3)">Method 3</div>
-    <div class="circle c4" onclick="openModal(4)">Method 4</div>
-    <div class="circle c5" onclick="openModal(5)">Method 5</div>
-    <div class="circle c6" onclick="openModal(6)">Method 6</div>
-    <div class="circle c7" onclick="openModal(7)">Method 7</div>
-    <div class="circle c8" onclick="openModal(8)">Method 8</div>
-    <div class="circle c9" onclick="openModal(9)">Method 9</div>
-    <div class="circle c10" onclick="openModal(10)">Method 10</div>
-    <div class="circle c11" onclick="openModal(11)">Method 11</div>
-    <div class="circle c12" onclick="openModal(12)">Method 12</div>
-    <div class="circle c13" onclick="openModal(13)">Method 13</div>
-    <div class="circle c14" onclick="openModal(14)">Method 14</div>
-    <div class="circle c15" onclick="openModal(15)">Method 15</div>
-    <div class="circle c16" onclick="openModal(16)">Method 16</div>
-    <div class="circle c17" onclick="openModal(17)">Method 17</div>
-    <div class="circle c18" onclick="openModal(18)">Method 18</div>
-    <div class="circle c19" onclick="openModal(19)">Method 19</div>
-    <div class="circle c20" onclick="openModal(20)">Method 20</div>
-    <div class="circle c21" onclick="openModal(21)">Method 21</div>
-    <div class="circle c22" onclick="openModal(22)">Method 22</div>
-    <div class="circle c23" onclick="openModal(23)">Method 23</div>
-    <div class="circle c24" onclick="openModal(24)">Method 24</div>
-    <div class="circle c25" onclick="openModal(25)">Method 25</div>
-    <div class="circle c26" onclick="openModal(26)">Method 26</div>
-    <div class="circle c27" onclick="openModal(27)">Method 27</div>
-    <div class="circle c28" onclick="openModal(28)">Method 28</div>
-    <div class="circle c29" onclick="openModal(29)">Method 29</div>
-    <div class="circle c30" onclick="openModal(30)">Method 30</div>
+  <h1>Teaching Methods</h1>
+  <p class="sub">Click a circle to open a detailed card with <strong>Description</strong>, <strong>Steps</strong>, and <strong>Application</strong>.</p>
+
+  <div class="container" id="circles">
+    <div class="circle c1"  onclick="openModal(1,this)">Cooperative Learning</div>
+    <div class="circle c2"  onclick="openModal(2,this)">Project-Based Learning</div>
+    <div class="circle c3"  onclick="openModal(3,this)">Method 3</div>
+    <div class="circle c4"  onclick="openModal(4,this)">Method 4</div>
+    <div class="circle c5"  onclick="openModal(5,this)">Method 5</div>
+    <div class="circle c6"  onclick="openModal(6,this)">Method 6</div>
+    <div class="circle c7"  onclick="openModal(7,this)">Method 7</div>
+    <div class="circle c8"  onclick="openModal(8,this)">Method 8</div>
+    <div class="circle c9"  onclick="openModal(9,this)">Method 9</div>
+    <div class="circle c10" onclick="openModal(10,this)">Method 10</div>
+    <div class="circle c11" onclick="openModal(11,this)">Method 11</div>
+    <div class="circle c12" onclick="openModal(12,this)">Method 12</div>
+    <div class="circle c13" onclick="openModal(13,this)">Method 13</div>
+    <div class="circle c14" onclick="openModal(14,this)">Method 14</div>
+    <div class="circle c15" onclick="openModal(15,this)">Method 15</div>
+    <div class="circle c16" onclick="openModal(16,this)">Method 16</div>
+    <div class="circle c17" onclick="openModal(17,this)">Method 17</div>
+    <div class="circle c18" onclick="openModal(18,this)">Method 18</div>
+    <div class="circle c19" onclick="openModal(19,this)">Method 19</div>
+    <div class="circle c20" onclick="openModal(20,this)">Method 20</div>
+    <div class="circle c21" onclick="openModal(21,this)">Method 21</div>
+    <div class="circle c22" onclick="openModal(22,this)">Method 22</div>
+    <div class="circle c23" onclick="openModal(23,this)">Method 23</div>
+    <div class="circle c24" onclick="openModal(24,this)">Method 24</div>
+    <div class="circle c25" onclick="openModal(25,this)">Method 25</div>
+    <div class="circle c26" onclick="openModal(26,this)">Method 26</div>
+    <div class="circle c27" onclick="openModal(27,this)">Method 27</div>
+    <div class="circle c28" onclick="openModal(28,this)">Method 28</div>
+    <div class="circle c29" onclick="openModal(29,this)">Method 29</div>
+    <div class="circle c30" onclick="openModal(30,this)">Method 30</div>
   </div>
 
-  <!-- مودال -->
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2 id="modalTitle"></h2>
-      <p id="modalText"></p>
+  <!-- MODAL -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="close" onclick="closeModal()" aria-label="Close">×</button>
+      <div class="card-header">
+        <h2 class="title" id="mTitle">Title</h2>
+        <span class="chip">Teaching Method</span>
+      </div>
+      <div class="card-body">
+        <section class="kb-section">
+          <h3 class="kb-head"><span class="emoji">✨</span> Description</h3>
+          <p class="desc" id="mDesc"></p>
+        </section>
+        <section class="kb-section">
+          <h3 class="kb-head"><span class="emoji">✅</span> Steps</h3>
+          <ol class="steps" id="mSteps"></ol>
+        </section>
+        <section class="kb-section">
+          <h3 class="kb-head"><span class="emoji">🎯</span> Application</h3>
+          <p class="app" id="mApp"></p>
+        </section>
+      </div>
     </div>
   </div>
 
   <script>
-    const modal = document.getElementById("myModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalText = document.getElementById("modalText");
+    const modal = document.getElementById('modal');
+    const titleEl = document.getElementById('mTitle');
+    const descEl  = document.getElementById('mDesc');
+    const stepsEl = document.getElementById('mSteps');
+    const appEl   = document.getElementById('mApp');
+    const card    = document.querySelector('.modal-card');
 
+    // محتوای نمونه برای 2 روش؛ بقیه خالی بماند تا خودت پر کنی
     const contents = {
-      1: { title: "Cooperative Learning", text: "Students work in small groups to help each other learn.\nSteps: Form groups → Assign roles → Solve tasks together." },
-      2: { title: "Project-Based Learning", text: "Students learn by working on a project over time.\nSteps: Define question → Research → Create project → Present results." },
-      // بقیه توضیحات خالی بماند
-      3: {title: "Method 3", text: ""},
-      4: {title: "Method 4", text: ""},
-      5: {title: "Method 5", text: ""},
-      6: {title: "Method 6", text: ""},
-      7: {title: "Method 7", text: ""},
-      8: {title: "Method 8", text: ""},
-      9: {title: "Method 9", text: ""},
-      10: {title: "Method 10", text: ""},
-      11: {title: "Method 11", text: ""},
-      12: {title: "Method 12", text: ""},
-      13: {title: "Method 13", text: ""},
-      14: {title: "Method 14", text: ""},
-      15: {title: "Method 15", text: ""},
-      16: {title: "Method 16", text: ""},
-      17: {title: "Method 17", text: ""},
-      18: {title: "Method 18", text: ""},
-      19: {title: "Method 19", text: ""},
-      20: {title: "Method 20", text: ""},
-      21: {title: "Method 21", text: ""},
-      22: {title: "Method 22", text: ""},
-      23: {title: "Method 23", text: ""},
-      24: {title: "Method 24", text: ""},
-      25: {title: "Method 25", text: ""},
-      26: {title: "Method 26", text: ""},
-      27: {title: "Method 27", text: ""},
-      28: {title: "Method 28", text: ""},
-      29: {title: "Method 29", text: ""},
-      30: {title: "Method 30", text: ""}
+      1:{
+        title:"Cooperative Learning",
+        description:"Students work in small, diverse groups and take shared responsibility for achieving learning goals. Each member has a role and supports peers.",
+        steps:[
+          "Form groups (3–5) with mixed abilities and assign roles (facilitator, recorder, checker, reporter).",
+          "Present a clear task with shared goals and individual accountability.",
+          "Monitor group processes; prompt positive interdependence and peer feedback.",
+          "Have groups present outcomes; debrief on collaboration skills."
+        ],
+        application:"Use for problem-solving, jigsaw reading, peer instruction, and lab activities where teamwork and communication are key."
+      },
+      2:{
+        title:"Project-Based Learning",
+        description:"Learners explore an authentic question/problem over time and create a product or presentation, integrating research, design, and reflection.",
+        steps:[
+          "Define an authentic driving question aligned with standards.",
+          "Plan milestones and roles; provide resources and checkpoints.",
+          "Support inquiry, prototyping, and revisions based on feedback.",
+          "Showcase final products and reflect on process and outcomes."
+        ],
+        application:"Great for interdisciplinary units, community-based projects, and real-world challenges that require creativity and sustained inquiry."
+      },
+      3:{title:"Method 3", description:"", steps:[], application:""},
+      4:{title:"Method 4", description:"", steps:[], application:""},
+      5:{title:"Method 5", description:"", steps:[], application:""},
+      6:{title:"Method 6", description:"", steps:[], application:""},
+      7:{title:"Method 7", description:"", steps:[], application:""},
+      8:{title:"Method 8", description:"", steps:[], application:""},
+      9:{title:"Method 9", description:"", steps:[], application:""},
+      10:{title:"Method 10", description:"", steps:[], application:""},
+      11:{title:"Method 11", description:"", steps:[], application:""},
+      12:{title:"Method 12", description:"", steps:[], application:""},
+      13:{title:"Method 13", description:"", steps:[], application:""},
+      14:{title:"Method 14", description:"", steps:[], application:""},
+      15:{title:"Method 15", description:"", steps:[], application:""},
+      16:{title:"Method 16", description:"", steps:[], application:""},
+      17:{title:"Method 17", description:"", steps:[], application:""},
+      18:{title:"Method 18", description:"", steps:[], application:""},
+      19:{title:"Method 19", description:"", steps:[], application:""},
+      20:{title:"Method 20", description:"", steps:[], application:""},
+      21:{title:"Method 21", description:"", steps:[], application:""},
+      22:{title:"Method 22", description:"", steps:[], application:""},
+      23:{title:"Method 23", description:"", steps:[], application:""},
+      24:{title:"Method 24", description:"", steps:[], application:""},
+      25:{title:"Method 25", description:"", steps:[], application:""},
+      26:{title:"Method 26", description:"", steps:[], application:""},
+      27:{title:"Method 27", description:"", steps:[], application:""},
+      28:{title:"Method 28", description:"", steps:[], application:""},
+      29:{title:"Method 29", description:"", steps:[], application:""},
+      30:{title:"Method 30", description:"", steps:[], application:""}
     };
 
-    function openModal(id) {
-      modal.style.display = "flex";
-      modalTitle.textContent = contents[id].title;
-      modalText.textContent = contents[id].text;
+    function openModal(id, el){
+      // رنگ دایره را به عنوان accent مودال بگذار
+      const bg = getComputedStyle(el).backgroundColor;
+      card.style.setProperty('--accent', bg);
+
+      const c = contents[id] || {title:"", description:"", steps:[], application:""};
+      titleEl.textContent = c.title || `Method ${id}`;
+      descEl.textContent  = c.description || "—";
+      stepsEl.innerHTML   = (c.steps && c.steps.length)
+        ? c.steps.map(st => `<li>${st}</li>`).join("")
+        : `<li>—</li>`;
+      appEl.textContent   = c.application || "—";
+
+      modal.style.display = 'flex';
+      document.body.classList.add('modal-open');
+      modal.setAttribute('aria-hidden','false');
     }
 
-    function closeModal() {
-      modal.style.display = "none";
+    function closeModal(){
+      modal.style.display = 'none';
+      document.body.classList.remove('modal-open');
+      modal.setAttribute('aria-hidden','true');
     }
 
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        closeModal();
-      }
-    }
+    // بستن با کلیک روی پس‌زمینه
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+    // بستن با ESC
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
   </script>
 </body>
 </html>
