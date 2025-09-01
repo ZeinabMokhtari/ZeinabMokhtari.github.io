@@ -82,9 +82,21 @@ body:not(.light) #theme-toggle {
 
 .about-container {
   display: flex;
+  flex-direction: column; /* پیش‌فرض: موبایل → ستونی (عکس بالا، متن زیر) */
   align-items: center;
   gap: 20px;
-  flex-wrap: wrap; /* روی موبایل میره زیر متن */
+}
+
+/* وقتی صفحه بزرگتر از 768px شد → افقی */
+@media (min-width: 768px) {
+  .about-container {
+    flex-direction: row;   /* عکس و متن کنار هم */
+    align-items: flex-start; /* متن بالاتر بیفته */
+  }
+
+  .about-container p {
+    flex: 1;  /* متن فضا پر کنه */
+  }
 }
     </style>
 
