@@ -717,7 +717,9 @@
   </script>
   <script>
   /* 1) آدرس تابع Serverless خودت را اینجا بگذار */
-  const ENDPOINT = 'https://teaching-nine.vercel.app/api/generate'; // ← این را عوض کن
+  const ENDPOINT = location.hostname.endsWith('vercel.app')
+  ? '/api/generate'                                   // وقتی روی دامنهٔ ورسل هستی
+  : 'https://teaching-nine.vercel.app/api/generate';  // وقتی از github.io می‌بینی
 
   /* 2) باز/بستن فرم */
   function toggleTailorForm(force){
