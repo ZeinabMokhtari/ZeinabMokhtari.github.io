@@ -12,21 +12,24 @@
   <link rel="stylesheet" href="styles.css">
 
   <style>
-    .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-  </style>
-  <style>
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
   #theme-toggle {
-    font-size: 20px;
-    padding: 6px 10px;
-    border: 1px solid #ccc;
-    background: white;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    padding: 8px 12px;
+    background: yellow;
     color: black;
+    border: 2px solid red;
+    border-radius: 8px;
     cursor: pointer;
     z-index: 9999;
   }
