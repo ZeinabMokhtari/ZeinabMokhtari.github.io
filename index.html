@@ -20,49 +20,46 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
-   #theme-toggle {
-  position: fixed;
-  top: 15px;
-  right: 15px;
+  /* نوار بالا: آیتم‌ها کنار هم */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  position: sticky; /* اگه می‌خوای بالا بچسبه */
+  top: 0;
+  background: var(--bg, #fff);
+  z-index: 10;
+}
 
-  /* اندازه و لمس‌پذیری استاندارد */
-  min-width: 44px;
-  min-height: 44px;
+/* لینک‌ها سمت راست برن */
+.menu {
+  margin-left: auto;
+  display: flex;
+  gap: 16px;
+}
+
+/* دکمه‌ی تم: از حالت fixed خارج شد (توی جریان عادی) */
+#theme-toggle {
+  position: static;            /* مهم: دیگه fixed نیست */
+  min-width: 40px;
+  min-height: 40px;
   padding: 8px 12px;
-
-  /* ظاهر */
-  border-radius: 9999px;           /* قرص/پیل */
+  border-radius: 9999px;
   border: 1px solid rgba(0,0,0,0.12);
   background: rgba(255,255,255,0.85);
   color: #111;
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
   backdrop-filter: blur(6px);
-
-  /* تایپوگرافی */
   font-size: 18px;
   line-height: 1;
-
-  /* تعامل */
   cursor: pointer;
-  z-index: 9999;
   transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  /* بذارش کنار منو */
+  margin-left: 8px;
 }
 
-#theme-toggle:hover {
-  transform: translateY(-1px) scale(1.05);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-}
-
-#theme-toggle:active {
-  transform: scale(0.97);
-}
-
-#theme-toggle:focus-visible {
-  outline: 3px solid #2563eb; /* رنگ آبی ملایم برای فوکِس */
-  outline-offset: 3px;
-}
-
-/* حالت دارک (وقتی body کلاس light ندارد) */
+/* حالت دارک */
 body:not(.light) #theme-toggle {
   background: rgba(34,34,34,0.7);
   color: #f5f5f5;
@@ -70,11 +67,11 @@ body:not(.light) #theme-toggle {
   box-shadow: 0 6px 18px rgba(0,0,0,0.35);
 }
 
-/* احترام به کاربرانی که انیمیشن نمی‌خواهند */
-@media (prefers-reduced-motion: reduce) {
-  #theme-toggle {
-    transition: none;
-  }
+/* موبایل: اگه منو عمودی شد، فاصله بده که بهم نچسبن */
+@media (max-width: 640px) {
+  .nav { gap: 8px; }
+  .menu { gap: 12px; }
+  #theme-toggle { margin-left: 8px; }
 }
   </style>
 </head>
