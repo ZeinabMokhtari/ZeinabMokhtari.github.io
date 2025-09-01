@@ -1,3 +1,6 @@
+if (req.method === 'GET') {
+  return res.status(200).send('ALIVE');
+}
 // api/generate.js
 // نکته: نیازی به package.json و نصب پکیج نیست.
 // اگر OPENAI_API_KEY ست نشده باشد، خروجی Mock می‌دهد تا همه‌چیز را سریع تست کنی.
